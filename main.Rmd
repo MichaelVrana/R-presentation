@@ -1,0 +1,70 @@
+# JS Squad - R {.tabset .tabset-dropdown}
+
+## Co to je?
+
+- Jazyk pro statistiku/data science
+- Hodně high level
+- Dynamicky typovaný
+- Funkcionální základ
+
+## Quick Tour {.tabset .tabset-dropdown}
+
+### Hello world
+```{R}
+str <- "hello world"
+
+print(str)
+```
+
+### Function
+```{R}
+sum <- function(a, b) {
+    a + b
+}
+
+print(sum(1, 2))
+```
+
+### Everything is a vector?
+```{R}
+a <- 1
+
+print(a)
+
+a[[2]] <- 2
+
+print(a)
+```
+
+### What about operations then?
+```{R}
+vec <- c(1, 2, 3)
+
+print(vec * 2)
+
+print(vec * vec)
+```
+
+```{R}
+vec <- 1:5 * 2
+indices <- 2:4
+
+print(vec[indices])
+```
+
+### Only vectors?
+
+```{R}
+list <- c(1, "abcd", TRUE)
+
+print(list)
+```
+
+## Dropdown 3 
+
+## Dropdown 4
+
+
+```{r}
+print("test")
+```
