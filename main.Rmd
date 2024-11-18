@@ -1,11 +1,12 @@
 # JS Squad - R {.tabset .tabset-dropdown}
 
+
 ## Co to je?
 
-- Jazyk pro statistiku/data science
-- Hodně high level
-- Dynamicky typovaný
-- Funkcionální základ
+- Statistics/data science focused
+- Very high level
+- Dynamically typed
+- Based on fuctional languages
 
 ## Quick Tour {.tabset .tabset-dropdown}
 
@@ -53,18 +54,90 @@ print(vec[indices])
 ```
 
 ### Only vectors?
-
 ```{R}
 list <- c(1, "abcd", TRUE)
 
 print(list)
 ```
 
-## Dropdown 3 
 
-## Dropdown 4
+### It's a me Mario!
+```{R}
+increment <- function (x) x + 1
+double <- function (x) x * 2
+square <- function (x) x * x
 
+1 |> increment() |> double() |> square()
+```
 
-```{r}
-print("test")
+### What about objects?
+```{R}
+namedList <- list(foo = "foo", bar = 1)
+
+namedList$foo
+namedList$bar
+```
+
+### The big elephant in the room...
+```{R}
+counter <- 0
+
+increment <- function () {
+    counter <<- counter + 1
+    counter
+}
+
+should_run <- TRUE
+
+print_counter <- function (x) {
+    if (!should_run) return()
+
+    print(paste("counted to", x))
+}
+
+increment()
+
+print_counter(increment())
+
+increment()
+```
+
+## What is good for? {.tabset .tabset-dropdown}
+
+- Data wrangling stuff
+  - Tidyverse package collection
+- For writing your own DSLs
+
+### Dplyr
+```{R}
+library(dplyr)
+```
+
+```{R}
+starwars
+```
+
+```{R}
+starwars |>
+  filter(species == "Droid")
+```
+
+```{R}
+starwars |>
+  mutate(name, bmi = mass / ((height / 100)  ^ 2)) |>
+  select(name:mass, bmi)
+```
+
+### Plotting
+
+```{R}
+library(ggplot2)
+
+ggplot(mpg, aes(displ, hwy, colour = class)) + 
+  geom_point()
+```
+
+## Writing your own DSL {.tabset .tabset-dropdown}
+### How does R do it?
+```{R}
 ```
