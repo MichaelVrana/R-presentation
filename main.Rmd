@@ -1,7 +1,6 @@
 # JS Squad - R {.tabset .tabset-dropdown}
 
-
-## Co to je?
+## What is R?
 
 - Statistics/data science focused
 - Very high level
@@ -138,6 +137,109 @@ ggplot(mpg, aes(displ, hwy, colour = class)) +
 ```
 
 ## Writing your own DSL {.tabset .tabset-dropdown}
+### What is a code anyways?
+```{R}
+library(lobstr)
+```
+
+```{R}
+ast(1 + 2 * 3)
+```
+
+```{R}
+ast(
+  foo(1, 2, "abcd", arg = TRUE) + 1
+)
+```
+
+```{R}
+ast(
+
+  foo <- function(x) {
+    print(x)
+    a <- x / 2
+    x + 1
+  }
+
+)
+```
+
 ### How does R do it?
 ```{R}
+library(rlang)
+```
+
+```{R}
+expr(1 + 2)
+```
+
+```{R}
+e <- expr(1 + 2)
+
+as.list(e)
+```
+
+```{R}
+eval(e)
+```
+
+### Environments
+
+```{R}
+a <- 1
+e <- expr(a + 1)
+
+eval(e)
+```
+
+```{R}
+envir <- env()
+
+envir$a <- 2
+
+as.list(envir)
+
+eval(e, envir)
+```
+
+```{R}
+env_parent(envir) |> as.list()
+```
+
+```{R}
+x <- 42
+
+foo <- function(arg) {
+  x <- arg
+  y <- x + 1
+
+  environment()
+}
+
+envir <- foo(x)
+
+envir |> as.list()
+envir |> env_parent() |> as.list()
+```
+
+### Capturing argument expressions
+
+```{R}
+foo <- function(x) {
+  enquo(x)
+}
+
+str <- "this is an"
+
+quosure <- foo(paste(str, "arg"))
+
+quosure
+
+eval_tidy(quosure)
+```
+
+## R metaprogramming in practice
+
+```{R}
+
 ```
