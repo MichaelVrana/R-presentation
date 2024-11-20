@@ -1,4 +1,4 @@
-# JS Squad - R {.tabset .tabset-dropdown}
+# JS Squad - Letem světem Rkem {.tabset .tabset-dropdown}
 
 ## What is R?
 
@@ -75,6 +75,23 @@ namedList <- list(foo = "foo", bar = 1)
 
 namedList$foo
 namedList$bar
+```
+
+### Dynamic dispatch
+```{R}
+cat <- function(name) {
+  structure(list(name = name), class = "cat")
+}
+
+make_sound <- function(animal) UseMethod("make_sound", animal)
+
+make_sound.cat <- function(animal) {
+  paste("Cat", animal$name, "says: meow") |> str()
+}
+
+felix <- cat("Felix")
+
+make_sound(felix)
 ```
 
 ### The big elephant in the room...
@@ -239,7 +256,3 @@ eval_tidy(quosure)
 ```
 
 ## R metaprogramming in practice
-
-```{R}
-
-```
